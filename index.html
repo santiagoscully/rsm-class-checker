@@ -24,6 +24,7 @@ async function unlock(pass){
   return new TextDecoder().decode(pt);
 }
 function show(html){html=html.replace("<head>","<head>"+ICONS);document.open();document.write(html);document.close()}
+if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(function(){})}
 var saved=null;try{saved=localStorage.getItem("rsm-pass")}catch(x){}
 if(saved){unlock(saved).then(show).catch(function(){try{localStorage.removeItem("rsm-pass")}catch(x){}})}
 document.getElementById("f").addEventListener("submit",function(ev){
